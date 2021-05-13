@@ -14,7 +14,7 @@ namespace AnimalShelter
     {
       var builder = new ConfigurationBuilder()
           .SetBasePath(env.ContentRootPath)
-          .AddJsonFile("appsettings.json");
+          .AddJsonFile("appsettings.json"); //plug in the json file here as part of the build process, so the application knows how to connect to the DB
       Configuration = builder.Build();
     }
 
@@ -24,8 +24,8 @@ namespace AnimalShelter
     {
       services.AddMvc();
 
-      services.AddEntityFrameworkMySql()
-        .AddDbContext<AnimalShelterContext>(options => options
+      services.AddEntityFrameworkMySql() //this utilizes our DB connection
+        .AddDbContext<AnimalShelterContext>(options => options  //put the model name here 
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
     }
 

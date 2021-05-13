@@ -2,12 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using AnimalShelter.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace AnimalShelter.Controllers
 {
   public class AnimalsController : Controller
   {
-    private readonly AnimalShelterContext _db;
+    private readonly AnimalShelterContext _db; //_db represents the database now
 
     public AnimalsController(AnimalShelterContext db)
     {
@@ -17,6 +18,7 @@ namespace AnimalShelter.Controllers
     public ActionResult Index()
     {
       List<Animal> model = _db.Animals.ToList();
+      // List<Animal> model   = _db.FromSql("SELECT * FROM animals ORDER BY Type DESC").ToList();
       return View(model);
     }
 

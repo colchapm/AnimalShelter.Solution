@@ -13,3 +13,5 @@ namespace AnimalShelter.Models
     public string Breed { get; set; }
   }
 }
+
+//make a property in this class for each column in our table
